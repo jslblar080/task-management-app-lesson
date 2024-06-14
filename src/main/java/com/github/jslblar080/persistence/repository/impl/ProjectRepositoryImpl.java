@@ -16,7 +16,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     private final Map<Long, Project> projects = new ConcurrentHashMap<>();
 
     public ProjectRepositoryImpl() {
-        projects.put(100000L, new Project(100000L, "First test", LocalDate.now()));
+        save(new Project(100000L, "First test", LocalDate.now()));
     }
 
     @Override
