@@ -18,7 +18,7 @@ public class LsApplication {
                 projectRepo.findById(testId).ifPresent(testProject -> {
                     System.out.println("Project ID: " + testProject.getId()); // Project ID: 100000
                     System.out.println("Project name: " + testProject.getName()); // Project name: First test
-                    System.out.println("Date created: " + testProject.getDateCreated()); // Date created: 2024-06-15
+                    System.out.println("Date created: " + testProject.getDateCreated()); // Date created: 2024-06-16
                 });
             }
         }

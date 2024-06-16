@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service // bean name: projectServiceImpl
+@Service // bean name: projectServiceImpl registered in IoC container
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired // Spring autowires POJO field with the projectRepo bean (ProjectRepositoryImpl)
