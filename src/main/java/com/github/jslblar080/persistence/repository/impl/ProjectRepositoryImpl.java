@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 // map-based implementation of the repository interface
-//@Component("projectRepo") // bean instance id
+//@Component // meta-annotation that can be applied to another annotation
 @Repository
 public class ProjectRepositoryImpl implements ProjectRepository {
 

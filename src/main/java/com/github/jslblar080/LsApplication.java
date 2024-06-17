@@ -7,7 +7,16 @@ import com.github.jslblar080.service.impl.ProjectServiceImpl;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
+//@ComponentScan(
+//        excludeFilters = {@ComponentScan.Filter(
+//                type = FilterType.CUSTOM,
+//                classes = {TypeExcludeFilter.class}
+//        ), @ComponentScan.Filter(
+//                type = FilterType.CUSTOM,
+//                classes = {AutoConfigurationExcludeFilter.class}
+//        )}
+//)
+@SpringBootApplication(scanBasePackages = "com.github.jslblar080")
 public class LsApplication {
 
     public static void main(String[] args) {
