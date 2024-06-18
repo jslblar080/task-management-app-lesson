@@ -7,7 +7,9 @@ import java.util.Random;
 public class Project {
 
     private final Long id;
+
     private final String name;
+
     private final LocalDate dateCreated;
 
     public Project(Long id, String name, LocalDate dateCreated) {
