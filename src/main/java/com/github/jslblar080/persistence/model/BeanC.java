@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class BeanC {
 
-    private static Logger log = LoggerFactory.getLogger(BeanC.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @PreDestroy
     public void preDestroy() {

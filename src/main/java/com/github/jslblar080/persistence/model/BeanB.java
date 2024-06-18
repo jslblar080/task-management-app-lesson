@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class BeanB {
 
-    private static Logger log = LoggerFactory.getLogger(BeanB.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     public void initialize() {
         log.info("Custom initMethod from BeanB is called.");
