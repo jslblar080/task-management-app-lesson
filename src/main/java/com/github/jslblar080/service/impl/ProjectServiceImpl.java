@@ -11,7 +11,7 @@ import java.util.Optional;
 
 //@Component // meta-annotation that can be applied to another annotation
 @Service // bean name: projectServiceImpl registered in IoC container
-@Lazy // delay the creation of a bean up until the point it's required (lazy initialization)
+@Lazy // Lazy initialization helps limit resource consumption peaks at startup and save overall system resources.
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired // Spring autowires POJO field with the projectRepo bean (ProjectRepositoryImpl)
