@@ -14,11 +14,13 @@ public class AppConfig {
         return new BeanA();
     }
 
+    // Tasks with opening a file, opening a network/database connection, allocating memory
     @Bean(initMethod = "initialize")
     public BeanB beanB() {
         return new BeanB();
     }
 
+    // Tasks with closing a file, closing a network/database connection, deallocating memory
     @Bean(destroyMethod = "destroy")
     public BeanC beanC() {
         return new BeanC();
