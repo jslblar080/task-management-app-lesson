@@ -3,7 +3,6 @@ package com.github.jslblar080;
 import com.github.jslblar080.config.PersistenceConfig;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.service.ProjectService;
-import com.github.jslblar080.service.impl.ProjectServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -33,9 +32,9 @@ public class LsApplication {
 //            persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //            persistence.model.BeanB   : Custom initMethod from BeanB is called.
 
-            ProjectServiceImpl projectRepo = ctx.getBean(ProjectServiceImpl.class);
+            ProjectService projectService = ctx.getBean(ProjectService.class);
             var testIds = new Long[]{50000L, 100000L, 200000L};
-            printTestIds(projectRepo, testIds);
+            printTestIds(projectService, testIds);
 //            Project ID: 100000
 //            Project name: First test
 //            Date created: 2024-06-18

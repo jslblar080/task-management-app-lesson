@@ -10,25 +10,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 //@Component // meta-annotation that can be applied to another annotation
-@Service // bean name: projectServiceImpl registered in IoC container
+@Service
 @Lazy // Lazy initialization helps limit resource consumption peaks at startup and save overall system resources.
-public class ProjectServiceImpl implements ProjectService {
+public class ProjectServiceImplFieldInject implements ProjectService {
 
+    // field-based dependency injection
+    @Autowired
     private ProjectRepository projectRepo; // using @Autowired on fields is not the recommended practice
 
-    public ProjectServiceImpl() {
-    }
-
-    // constructor-based dependency injection
-    @Autowired // multiple constructors need @Autowired (@Autowired is optional for a single constructor)
-    public ProjectServiceImpl(ProjectRepository projectRepo) {
-        this.projectRepo = projectRepo;
-    }
-
-    // setter-based dependency injection (@Autowired required)
-    @Autowired
-    public void setProjectRepository(ProjectRepository projectRepo) {
-        this.projectRepo = projectRepo;
+    public ProjectServiceImplFieldInject() {
     }
 
     @Override

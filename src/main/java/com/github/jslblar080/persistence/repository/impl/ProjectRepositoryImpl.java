@@ -2,7 +2,6 @@ package com.github.jslblar080.persistence.repository.impl;
 
 import com.github.jslblar080.persistence.model.Project;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
