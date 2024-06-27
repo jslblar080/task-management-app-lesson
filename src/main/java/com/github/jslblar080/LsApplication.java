@@ -44,12 +44,24 @@ public class LsApplication {
         }
 
         try (var ctx = new AnnotationConfigApplicationContext(PersistenceConfig.class)) {
-            ProjectRepository projectRepo = ctx.getBean(ProjectRepository.class);
+            var singletonRepo1 = (ProjectRepository) ctx.getBean("singletonBean");
+            var singletonRepo2 = (ProjectRepository) ctx.getBean("singletonBean");
+            if (singletonRepo1.toString().equals(singletonRepo2.toString())) {
+                System.out.println("\nSame instance for singletonRepo1 and singletonRepo2.\n");
+                // Same instance for singletonRepo1 and singletonRepo2.
+            }
             var testIds = new Long[]{50000L, 100000L, 200000L};
-            printTestIds(projectRepo, testIds);
+            printTestIds(singletonRepo1, testIds);
 //            Project ID: 100000
 //            Project name: First test
 //            Date created: 2024-06-18
+
+            var prototypeRepo1 = (ProjectRepository) ctx.getBean("prototypeBean");
+            var prototypeRepo2 = (ProjectRepository) ctx.getBean("prototypeBean");
+            if (!prototypeRepo1.toString().equals(prototypeRepo2.toString())) {
+                System.out.println("\nDifferent instance for prototypeRepo1 and prototypeRepo2.\n");
+                // Different instance for prototypeRepo1 and prototypeRepo2.
+            }
         }
 
         context.close();

@@ -23,8 +23,8 @@ public class ProjectServiceImplConstructorInject implements ProjectService {
 
     // constructor-based dependency injection
     @Autowired // multiple constructors need @Autowired (@Autowired is optional for a single constructor)
-    public ProjectServiceImplConstructorInject(ProjectRepository projectRepo) {
-        this.projectRepo = projectRepo;
+    public ProjectServiceImplConstructorInject(ProjectRepository singletonBean) {
+        projectRepo = singletonBean;
     }
 
     @Override
