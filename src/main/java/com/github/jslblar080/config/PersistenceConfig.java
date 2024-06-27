@@ -4,7 +4,6 @@ import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
