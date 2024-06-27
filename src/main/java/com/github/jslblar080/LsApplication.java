@@ -17,7 +17,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 //                classes = {AutoConfigurationExcludeFilter.class}
 //        )}
 //)
-@SpringBootApplication(scanBasePackages = "com.github.jslblar080")
+@SpringBootApplication //(scanBasePackages = "com.github.jslblar080")
 public class LsApplication {
 
     public static void main(String[] args) {
@@ -44,19 +44,12 @@ public class LsApplication {
         }
 
         try (var ctx = new AnnotationConfigApplicationContext(PersistenceConfig.class)) {
-//            persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
-//            persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
-//            persistence.model.BeanB   : Custom initMethod from BeanB is called.
-
             ProjectRepository projectRepo = ctx.getBean(ProjectRepository.class);
             var testIds = new Long[]{50000L, 100000L, 200000L};
             printTestIds(projectRepo, testIds);
 //            Project ID: 100000
 //            Project name: First test
 //            Date created: 2024-06-18
-
-//            persistence.model.BeanC   : @PreDestroy annotated method from BeanC is called.
-//            persistence.model.BeanC   : Custom destroyMethod from BeanC is called.
         }
 
         context.close();
