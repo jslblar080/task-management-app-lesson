@@ -7,9 +7,8 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component // The container invokes the BeanPostProcessor for each and every bean.
-// First the BeanFactoryPostProcessor is invoked, followed by the BeanPostProcessor
-public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
+@Component
+public class CustomBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -29,6 +28,6 @@ public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     @Override
     public int getOrder() {
-        return 1;
+        return 2;
     }
 }

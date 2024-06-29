@@ -22,19 +22,27 @@ public class LsApplication {
 
     public static void main(String[] args) {
 
-        // config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
-
-        // config.MyBeanPostProcessor         : BeanPostProcessor implemented class is instantiated!
+//        config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
 
         ConfigurableApplicationContext context = SpringApplication.run(LsApplication.class, args);
+//        config.MyBeanPostProcessor         : Before initializing the bean: beanA
+//        config.CustomBeanPostProcessor     : Before initializing the bean: beanA
 //        persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
 //        persistence.model.BeanA   : value of the property foo is: bar
+//        config.MyBeanPostProcessor         : After initializing the bean: beanA
+//        config.CustomBeanPostProcessor     : After initializing the bean: beanA
 //        persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //        persistence.model.BeanB   : Custom initMethod from BeanB is called.
 
         try (var ctx = new AnnotationConfigApplicationContext("com.github.jslblar080")) {
+//            config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
+
+//            config.MyBeanPostProcessor         : Before initializing the bean: beanA
+//            config.CustomBeanPostProcessor     : Before initializing the bean: beanA
 //            persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
 //            persistence.model.BeanA   : value of the property foo is: bar
+//            config.MyBeanPostProcessor         : After initializing the bean: beanA
+//            config.CustomBeanPostProcessor     : After initializing the bean: beanA
 //            persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //            persistence.model.BeanB   : Custom initMethod from BeanB is called.
 
