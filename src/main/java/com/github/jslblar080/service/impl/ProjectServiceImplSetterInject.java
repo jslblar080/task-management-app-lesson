@@ -3,7 +3,7 @@ package com.github.jslblar080.service.impl;
 import com.github.jslblar080.persistence.model.Project;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.service.ProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +19,8 @@ public class ProjectServiceImplSetterInject implements ProjectService {
     public ProjectServiceImplSetterInject() {
     }
 
-    // setter-based dependency injection (@Autowired required)
-    @Autowired
+    // setter-based dependency injection (annotation required for injecting dependencies)
+    @Resource(name = "projectRepositoryImpl")
     public void setProjectRepository(ProjectRepository projectRepo) {
         this.projectRepo = projectRepo;
     }
