@@ -3,6 +3,7 @@ package com.github.jslblar080;
 import com.github.jslblar080.config.PersistenceConfig;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.service.ProjectService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 //        )}
 //)
 @SpringBootApplication //(scanBasePackages = "com.github.jslblar080")
+@Slf4j
 public class LsApplication {
 
     public static void main(String[] args) {
@@ -46,7 +48,11 @@ public class LsApplication {
 //            persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //            persistence.model.BeanB   : Custom initMethod from BeanB is called.
 
+            log.info(ctx.getId());
+            // org.springframework.context.annotation.AnnotationConfigApplicationContext@XXXXXXXX
+
             ProjectService projectService = ctx.getBean(ProjectService.class);
+//            ProjectServiceImplConstructorInject : CONTEXT WITH ID 'org.springframework.context.annotation.AnnotationConfigApplicationContext@XXXXXXXX' SET
             var testIds = new Long[]{50000L, 100000L, 200000L};
             printTestIds(projectService, testIds);
 //            Project ID: 100000
@@ -78,9 +84,15 @@ public class LsApplication {
             }
         }
 
+        log.info("Context active before close: {}", context.isActive());
+//        LsApplication      : Context active before close: true
+
         context.close();
 //        persistence.model.BeanC   : @PreDestroy annotated method from BeanC is called.
 //        persistence.model.BeanC   : Custom destroyMethod from BeanC is called.
+
+        log.info("Context active after close: {}", context.isActive());
+//        LsApplication      : Context active after close: false
     }
 
     public static void printTestIds(ProjectService projectService, Long[] testIds) {

@@ -16,7 +16,7 @@ public class BeanA {
         this.foo = foo;
     }
 
-    @PostConstruct
+    @PostConstruct // executed after the bean is instantiated
     public void postConstruct() {
         log.info("@PostConstruct annotated method from BeanA is called.");
         log.info("value of the property foo is: {}", foo);

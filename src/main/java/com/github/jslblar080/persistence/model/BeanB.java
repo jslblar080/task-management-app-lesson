@@ -10,7 +10,7 @@ public class BeanB {
         log.info("Custom initMethod from BeanB is called.");
     }
 
-    @PostConstruct
+    @PostConstruct // executed after the bean is instantiated
     public void postConstruct() {
         log.info("@PostConstruct annotated method from BeanB is called.");
     }

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BeanC {
 
-    @PreDestroy
+    @PreDestroy // executed before the context that contains the bean is destroyed
     public void preDestroy() {
         log.info("@PreDestroy annotated method from BeanC is called.");
     }
