@@ -3,7 +3,8 @@ package com.github.jslblar080.service.impl;
 import com.github.jslblar080.persistence.model.Project;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.service.ProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,8 @@ import java.util.Optional;
 public class ProjectServiceImplFieldInject implements ProjectService {
 
     // field-based dependency injection
-    @Autowired
+    @Inject
+    @Named("projectRepositoryImpl")
     private ProjectRepository projectRepo; // using @Autowired on fields is not the recommended practice
 
     public ProjectServiceImplFieldInject() {
