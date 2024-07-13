@@ -1,9 +1,13 @@
 package com.github.jslblar080.persistence.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Random;
 
+@Getter
 public class Project {
 
     private final Long id;
@@ -12,6 +16,9 @@ public class Project {
 
     private final LocalDate dateCreated;
 
+    @Setter
+    private String internalId;
+
     public Project(Long id, String name, LocalDate dateCreated) {
         if (Objects.isNull(id)) {
             id = new Random().nextLong();
@@ -19,17 +26,5 @@ public class Project {
         this.id = id;
         this.name = name;
         this.dateCreated = dateCreated;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getDateCreated() {
-        return dateCreated;
     }
 }

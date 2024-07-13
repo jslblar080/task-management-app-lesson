@@ -2,6 +2,7 @@ package com.github.jslblar080;
 
 import com.github.jslblar080.config.PersistenceConfig;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryImpl2;
 import com.github.jslblar080.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -58,6 +59,10 @@ public class LsApplication {
 //            Project ID: 100000
 //            Project name: First test
 //            Date created: 2024-06-18
+
+            var projectRepositoryImpl2 = (ProjectRepositoryImpl2) ctx.getBean("projectRepositoryImpl2");
+            projectRepositoryImpl2.findById(100000L).ifPresent(project -> log.info(project.getInternalId()));
+//            LsApplication      : PRO-100000-123
 
 //            persistence.model.BeanC   : @PreDestroy annotated method from BeanC is called.
 //            persistence.model.BeanC   : Custom destroyMethod from BeanC is called.

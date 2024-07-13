@@ -1,20 +1,16 @@
 package com.github.jslblar080.persistence.model;
 
 import jakarta.annotation.PostConstruct;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+@Setter
+@Getter
 @Slf4j
 public class BeanA {
 
     private String foo;
-
-    public String getFoo() {
-        return foo;
-    }
-
-    public void setFoo(String foo) {
-        this.foo = foo;
-    }
 
     @PostConstruct // executed after the bean is instantiated
     public void postConstruct() {
