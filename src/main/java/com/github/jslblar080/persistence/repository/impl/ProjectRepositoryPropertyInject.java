@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository //@Component // meta-annotation that can be applied to another annotation
 @PropertySource("classpath:application.properties")
 // map-based implementation of the repository interface
-public class ProjectRepositoryImpl2 implements ProjectRepository {
+public class ProjectRepositoryPropertyInject implements ProjectRepository {
 
     // 왜 프로퍼티가 아닌 생성자의 파라미터에 @Value를 적용하였는지?
     // https://stackoverflow.com/questions/53482633/value-in-springboot-returns-null
@@ -26,7 +26,7 @@ public class ProjectRepositoryImpl2 implements ProjectRepository {
 
     private final Map<Long, Project> projects = new ConcurrentHashMap<>();
 
-    public ProjectRepositoryImpl2(
+    public ProjectRepositoryPropertyInject(
             @Value("${project.prefix}") String prefix,
             @Value("${project.suffix}") Integer suffix
     ) {

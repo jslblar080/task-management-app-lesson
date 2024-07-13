@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component // The container invokes the BeanPostProcessor for each and every bean.
 // First the BeanFactoryPostProcessor is invoked, followed by the BeanPostProcessor
-public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
+public class FirstBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

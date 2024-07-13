@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class CustomBeanPostProcessor implements BeanPostProcessor, Ordered {
+public class SecondBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

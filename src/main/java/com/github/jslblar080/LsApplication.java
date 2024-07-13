@@ -2,7 +2,7 @@ package com.github.jslblar080;
 
 import com.github.jslblar080.config.PersistenceConfig;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
-import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryImpl2;
+import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryPropertyInject;
 import com.github.jslblar080.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -28,24 +28,24 @@ public class LsApplication {
 //        config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
 
         ConfigurableApplicationContext context = SpringApplication.run(LsApplication.class, args);
-//        config.MyBeanPostProcessor         : Before initializing the bean: beanA
-//        config.CustomBeanPostProcessor     : Before initializing the bean: beanA
+//        config.FirstBeanPostProcessor         : Before initializing the bean: beanA
+//        config.SecondBeanPostProcessor     : Before initializing the bean: beanA
 //        persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
 //        persistence.model.BeanA   : value of the property foo is: bar
-//        config.MyBeanPostProcessor         : After initializing the bean: beanA
-//        config.CustomBeanPostProcessor     : After initializing the bean: beanA
+//        config.FirstBeanPostProcessor         : After initializing the bean: beanA
+//        config.SecondBeanPostProcessor     : After initializing the bean: beanA
 //        persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //        persistence.model.BeanB   : Custom initMethod from BeanB is called.
 
         try (var ctx = new AnnotationConfigApplicationContext("com.github.jslblar080")) {
 //            config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
 
-//            config.MyBeanPostProcessor         : Before initializing the bean: beanA
-//            config.CustomBeanPostProcessor     : Before initializing the bean: beanA
+//            config.FirstBeanPostProcessor         : Before initializing the bean: beanA
+//            config.SecondBeanPostProcessor     : Before initializing the bean: beanA
 //            persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
 //            persistence.model.BeanA   : value of the property foo is: bar
-//            config.MyBeanPostProcessor         : After initializing the bean: beanA
-//            config.CustomBeanPostProcessor     : After initializing the bean: beanA
+//            config.FirstBeanPostProcessor         : After initializing the bean: beanA
+//            config.SecondBeanPostProcessor     : After initializing the bean: beanA
 //            persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //            persistence.model.BeanB   : Custom initMethod from BeanB is called.
 
@@ -60,8 +60,8 @@ public class LsApplication {
 //            Project name: First test
 //            Date created: 2024-06-18
 
-            var projectRepositoryImpl2 = (ProjectRepositoryImpl2) ctx.getBean("projectRepositoryImpl2");
-            projectRepositoryImpl2.findById(100000L).ifPresent(project -> log.info(project.getInternalId()));
+            var projectRepositoryPropertyInject = (ProjectRepositoryPropertyInject) ctx.getBean("projectRepositoryPropertyInject");
+            projectRepositoryPropertyInject.findById(100000L).ifPresent(project -> log.info(project.getInternalId()));
 //            LsApplication      : PRO-100000-123
 
 //            persistence.model.BeanC   : @PreDestroy annotated method from BeanC is called.
