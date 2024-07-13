@@ -25,7 +25,12 @@ public class LsApplication {
 
     public static void main(String[] args) {
 
+//        LsApplication      : The following 1 profile is active: "dev"
+
 //        config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
+
+//        config.AppConfig   : Active Profiles: dev
+//        config.AppConfig   : Default Profiles: default
 
         ConfigurableApplicationContext context = SpringApplication.run(LsApplication.class, args);
 //        config.FirstBeanPostProcessor         : Before initializing the bean: beanA
@@ -39,6 +44,9 @@ public class LsApplication {
 
         try (var ctx = new AnnotationConfigApplicationContext("com.github.jslblar080")) {
 //            config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
+
+//            config.AppConfig   : Active Profiles: dev
+//            config.AppConfig   : Default Profiles: default
 
 //            config.FirstBeanPostProcessor         : Before initializing the bean: beanA
 //            config.SecondBeanPostProcessor     : Before initializing the bean: beanA
@@ -54,6 +62,8 @@ public class LsApplication {
 
             ProjectService projectService = ctx.getBean(ProjectService.class);
 //            ProjectServiceImplConstructorInject : CONTEXT WITH ID 'org.springframework.context.annotation.AnnotationConfigApplicationContext@XXXXXXXX' SET
+//            p.r.impl.ProjectRepositoryImpl     : Retrieving Project using ProjectRepositoryImpl
+//            p.r.impl.ProjectRepositoryImpl     : Retrieving Project using ProjectRepositoryImpl
             var testIds = new Long[]{50000L, 100000L, 200000L};
             printTestIds(projectService, testIds);
 //            Project ID: 100000
@@ -61,6 +71,7 @@ public class LsApplication {
 //            Date created: 2024-06-18
 
             var projectRepositoryPropertyInject = (ProjectRepositoryPropertyInject) ctx.getBean("projectRepositoryPropertyInject");
+//            p.r.impl.ProjectRepositoryImpl     : Retrieving Project using ProjectRepositoryImpl
             projectRepositoryPropertyInject.findById(100000L).ifPresent(project -> log.info(project.getInternalId()));
 //            LsApplication      : PRO-100000-123
 
@@ -70,6 +81,7 @@ public class LsApplication {
 
         try (var ctx = new AnnotationConfigApplicationContext(PersistenceConfig.class)) {
             var singletonRepo1 = (ProjectRepository) ctx.getBean("singletonBean");
+//            p.r.impl.ProjectRepositoryImpl     : Retrieving Project using ProjectRepositoryImpl
             var singletonRepo2 = (ProjectRepository) ctx.getBean("singletonBean");
             if (singletonRepo1.toString().equals(singletonRepo2.toString())) {
                 System.out.println("\nSame instance for singletonRepo1 and singletonRepo2.\n");
@@ -82,7 +94,9 @@ public class LsApplication {
 //            Date created: 2024-06-18
 
             var prototypeRepo1 = (ProjectRepository) ctx.getBean("prototypeBean");
+//            p.r.impl.ProjectRepositoryImpl     : Retrieving Project using ProjectRepositoryImpl
             var prototypeRepo2 = (ProjectRepository) ctx.getBean("prototypeBean");
+//            p.r.impl.ProjectRepositoryImpl     : Retrieving Project using ProjectRepositoryImpl
             if (!prototypeRepo1.toString().equals(prototypeRepo2.toString())) {
                 System.out.println("\nDifferent instance for prototypeRepo1 and prototypeRepo2.\n");
                 // Different instance for prototypeRepo1 and prototypeRepo2.

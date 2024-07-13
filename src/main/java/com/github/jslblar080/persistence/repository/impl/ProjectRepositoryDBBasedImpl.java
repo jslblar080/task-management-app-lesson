@@ -13,19 +13,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 // map-based implementation of the repository interface
 @Slf4j
-@Profile("dev")
+@Profile("prod")
 @Repository //@Component // meta-annotation that can be applied to another annotation
-public class ProjectRepositoryImpl implements ProjectRepository {
+public class ProjectRepositoryDBBasedImpl implements ProjectRepository {
 
     private final Map<Long, Project> projects = new ConcurrentHashMap<>();
 
-    public ProjectRepositoryImpl() {
+    public ProjectRepositoryDBBasedImpl() {
         save(new Project(100000L, "First test", LocalDate.now()));
     }
 
     @Override
     public Optional<Project> findById(Long id) {
-        log.info("Retrieving Project using ProjectRepositoryImpl");
+        log.info("Retrieving Project using ProjectRepositoryDBBasedImpl");
         return Optional.ofNullable(projects.get(id));
     }
 
