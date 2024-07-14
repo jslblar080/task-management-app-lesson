@@ -25,7 +25,7 @@ public class ProjectRepositoryDBBasedImpl implements ProjectRepository {
 
     @Override
     public Optional<Project> findById(Long id) {
-        log.info("Retrieving Project using ProjectRepositoryDBBasedImpl");
+        log.debug("Retrieving Project using ProjectRepositoryDBBasedImpl");
         return Optional.ofNullable(projects.get(id));
     }
 

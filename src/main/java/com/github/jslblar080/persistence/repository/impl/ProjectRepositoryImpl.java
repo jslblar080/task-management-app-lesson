@@ -2,7 +2,8 @@ package com.github.jslblar080.persistence.repository.impl;
 
 import com.github.jslblar080.persistence.model.Project;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
@@ -12,10 +13,11 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 // map-based implementation of the repository interface
-@Slf4j
 @Profile("dev")
 @Repository //@Component // meta-annotation that can be applied to another annotation
 public class ProjectRepositoryImpl implements ProjectRepository {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ProjectRepositoryImpl.class);
 
     private final Map<Long, Project> projects = new ConcurrentHashMap<>();
 
@@ -25,12 +27,13 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 
     @Override
     public Optional<Project> findById(Long id) {
-        log.info("Retrieving Project using ProjectRepositoryImpl");
+        LOG.debug("Finding Project By Id {} using ProjectRepositoryImpl", id);
         return Optional.ofNullable(projects.get(id));
     }
 
     @Override
     public void save(Project project) {
+        LOG.debug("Saving Project {} using ProjectRepositoryImpl", project);
         projects.put(project.getId(), project);
     }
 }
