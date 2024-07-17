@@ -20,7 +20,7 @@ class ContextIntegrationTest {
 
     @Test
     public void whenContextIsLoaded_thenNoExceptions2() {
-        // application context is cached by test framework
+        // application context is cached between tests by test framework
         System.out.println(applicationContext.getId());
     }
 
