@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ProjectServiceIntegrationTest {
 
     @Autowired
-    private ProjectService projectService;
+    private ProjectService projectService; // component scanning required
 
     @Test
     public void whenSavingProject_thenOk() {
