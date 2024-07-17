@@ -31,9 +31,9 @@ public class ProjectRepositoryPropertyInject implements ProjectRepository {
     Creating shared instance of singleton bean 'projectRepositoryPropertyInject' 로그가 상단에서 최초로 찍히고
     곧 바로 Found key 'xxx' in PropertySource 로그가 찍히기 때문에 프로퍼티의 외부 설정이 정상적으로 이루어진다.
     */
-    private String prefix;
+    private final String prefix;
 
-    private Integer suffix;
+    private final Integer suffix;
 
     private final Map<Long, Project> projects = new ConcurrentHashMap<>();
 
