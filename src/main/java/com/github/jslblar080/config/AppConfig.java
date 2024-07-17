@@ -6,20 +6,29 @@ import com.github.jslblar080.persistence.model.BeanC;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 @Slf4j
+@PropertySource("classpath:additional.properties")
 @Configuration
 public class AppConfig {
 
     private final Environment env;
 
+    private final String additional;
+
     // Environment interface is an abstraction integrated in the container
     // It can be used to get the application’s properties and the profile information
-    public AppConfig(@Autowired Environment env) {
+    public AppConfig(
+            @Autowired Environment env,
+            @Value("${additional.info}") String additional
+    ) {
         this.env = env;
+        this.additional = additional;
     }
 
     @Bean
@@ -40,8 +49,13 @@ public class AppConfig {
     }
 
     @PostConstruct
-    void post() {
+    public void post() {
         log.info("Active Profiles: {}", env.getActiveProfiles());
         log.info("Default Profiles: {}", env.getDefaultProfiles());
+    }
+
+    @PostConstruct
+    public void showAdditionalProperty() {
+        log.info("Additional property: {}", additional);
     }
 }

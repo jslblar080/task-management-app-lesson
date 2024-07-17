@@ -30,6 +30,7 @@ public class LsApplication {
 //        config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
 //        config.AppConfig   : Active Profiles: dev
 //        config.AppConfig   : Default Profiles: default
+//        config.AppConfig   : Additional property: Additional Info
 //        config.FirstBeanPostProcessor         : Before initializing the bean: beanA
 //        config.SecondBeanPostProcessor     : Before initializing the bean: beanA
 //        persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
@@ -43,6 +44,7 @@ public class LsApplication {
 //            config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
 //            config.AppConfig   : Active Profiles: dev
 //            config.AppConfig   : Default Profiles: default
+//            config.AppConfig   : Additional property: Additional Info
 //            config.FirstBeanPostProcessor         : Before initializing the bean: beanA
 //            config.SecondBeanPostProcessor     : Before initializing the bean: beanA
 //            persistence.model.BeanA   : @PostConstruct annotated method from BeanA is called.
