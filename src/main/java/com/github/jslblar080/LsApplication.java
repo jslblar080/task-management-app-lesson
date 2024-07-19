@@ -5,6 +5,7 @@ import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryPropertyInject;
 import com.github.jslblar080.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -17,7 +18,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 */
 @SpringBootApplication //(scanBasePackages = "com.github.jslblar080")
 @Slf4j
-public class LsApplication {
+public class LsApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
 
@@ -35,6 +36,7 @@ public class LsApplication {
 //        config.SecondBeanPostProcessor     : After initializing the bean: beanA
 //        persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //        persistence.model.BeanB   : Custom initMethod from BeanB is called.
+//        LsApplication      : SAM run in CommandLineRunner interface is called when the application context has been loaded.
 
         try (var ctx = new AnnotationConfigApplicationContext("com.github.jslblar080")) {
 //            config.MyBeanFactoryPostProcessor  : postProcessBeanFactory is invoked!
@@ -119,5 +121,10 @@ public class LsApplication {
                 System.out.println("Date created: " + testProject.getDateCreated());
             });
         }
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        log.info("SAM run in CommandLineRunner interface is called when the application context has been loaded.");
     }
 }
