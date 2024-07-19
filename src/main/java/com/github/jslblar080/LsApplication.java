@@ -10,15 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-//@ComponentScan(
-//        excludeFilters = {@ComponentScan.Filter(
-//                type = FilterType.CUSTOM,
-//                classes = {TypeExcludeFilter.class}
-//        ), @ComponentScan.Filter(
-//                type = FilterType.CUSTOM,
-//                classes = {AutoConfigurationExcludeFilter.class}
-//        )}
-//)
+/*
+@org.springframework.boot.SpringBootConfiguration
+@org.springframework.boot.autoconfigure.EnableAutoConfiguration // based on @ConditionalOn* annotations
+@org.springframework.context.annotation.ComponentScan(xxx)
+*/
 @SpringBootApplication //(scanBasePackages = "com.github.jslblar080")
 @Slf4j
 public class LsApplication {

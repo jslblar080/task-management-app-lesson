@@ -1,5 +1,6 @@
 package com.github.jslblar080.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jslblar080.persistence.model.BeanA;
 import com.github.jslblar080.persistence.model.BeanB;
 import com.github.jslblar080.persistence.model.BeanC;
@@ -46,6 +47,20 @@ public class AppConfig {
     @Bean(destroyMethod = "destroy")
     public BeanC beanC() {
         return new BeanC();
+    }
+
+    // default ObjectMapper is based on @ConditionalOnMissingBean (only executable with Positive matches when not customized)
+    /*
+    Negative matches:
+
+    JacksonAutoConfiguration.JacksonObjectMapperConfiguration#jacksonObjectMapper:
+      Did not match:
+         - @ConditionalOnMissingBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) found beans of type 'com.fasterxml.jackson.databind.ObjectMapper' objectMapper (OnBeanCondition)
+    */
+    // customized ObjectMapper like below is executed
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
     @PostConstruct
