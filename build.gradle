@@ -27,6 +27,10 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api
 	implementation group: 'jakarta.inject', name: 'jakarta.inject-api', version: '2.0.1'
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.3.0'
+
 }
 
 tasks.named('test') {

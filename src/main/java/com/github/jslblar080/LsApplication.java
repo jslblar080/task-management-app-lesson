@@ -95,7 +95,7 @@ public class LsApplication implements CommandLineRunner {
         log.info("Context active before close: {}", context.isActive());
 //        LsApplication      : Context active before close: true
 
-        context.close();
+//        context.close();
 //        persistence.model.BeanC   : @PreDestroy annotated method from BeanC is called.
 //        persistence.model.BeanC   : Custom destroyMethod from BeanC is called.
 
