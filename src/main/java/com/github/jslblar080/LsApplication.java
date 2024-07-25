@@ -1,7 +1,7 @@
 package com.github.jslblar080;
 
 import com.github.jslblar080.config.PersistenceConfig;
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryPropertyInject;
 import com.github.jslblar080.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +36,7 @@ public class LsApplication implements CommandLineRunner {
 //        config.SecondBeanPostProcessor     : After initializing the bean: beanA
 //        persistence.model.BeanB   : @PostConstruct annotated method from BeanB is called.
 //        persistence.model.BeanB   : Custom initMethod from BeanB is called.
+//        JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 //        LsApplication      : SAM run in CommandLineRunner interface is called when the application context has been loaded.
 
         try (var ctx = new AnnotationConfigApplicationContext("com.github.jslblar080")) {
@@ -72,8 +73,8 @@ public class LsApplication implements CommandLineRunner {
         }
 
         try (var ctx = new AnnotationConfigApplicationContext(PersistenceConfig.class)) {
-            var singletonRepo1 = (ProjectRepository) ctx.getBean("singletonBean");
-            var singletonRepo2 = (ProjectRepository) ctx.getBean("singletonBean");
+            var singletonRepo1 = (ProjectRepositoryWithoutCrudRepository) ctx.getBean("singletonBean");
+            var singletonRepo2 = (ProjectRepositoryWithoutCrudRepository) ctx.getBean("singletonBean");
             if (singletonRepo1.toString().equals(singletonRepo2.toString())) {
                 System.out.println("\nSame instance for singletonRepo1 and singletonRepo2.\n");
 //                Same instance for singletonRepo1 and singletonRepo2.
@@ -84,8 +85,8 @@ public class LsApplication implements CommandLineRunner {
 //            Project name: First test
 //            Date created: 2024-06-18
 
-            var prototypeRepo1 = (ProjectRepository) ctx.getBean("prototypeBean");
-            var prototypeRepo2 = (ProjectRepository) ctx.getBean("prototypeBean");
+            var prototypeRepo1 = (ProjectRepositoryWithoutCrudRepository) ctx.getBean("prototypeBean");
+            var prototypeRepo2 = (ProjectRepositoryWithoutCrudRepository) ctx.getBean("prototypeBean");
             if (!prototypeRepo1.toString().equals(prototypeRepo2.toString())) {
                 System.out.println("\nDifferent instance for prototypeRepo1 and prototypeRepo2.\n");
 //                Different instance for prototypeRepo1 and prototypeRepo2.
@@ -113,7 +114,7 @@ public class LsApplication implements CommandLineRunner {
         }
     }
 
-    public static void printTestIds(ProjectRepository projectRepo, Long[] testIds) {
+    public static void printTestIds(ProjectRepositoryWithoutCrudRepository projectRepo, Long[] testIds) {
         for (Long testId : testIds) {
             projectRepo.findById(testId).ifPresent(testProject -> {
                 System.out.println("Project ID: " + testProject.getId());
@@ -124,7 +125,7 @@ public class LsApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         log.info("SAM run in CommandLineRunner interface is called when the application context has been loaded.");
     }
 }

@@ -1,7 +1,7 @@
 package com.github.jslblar080.persistence.repository.impl;
 
 import com.github.jslblar080.persistence.model.Project;
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository //@Component // meta-annotation that can be applied to another annotation
 @PropertySource("classpath:application.properties")
 // map-based implementation of the repository interface
-public class ProjectRepositoryPropertyInject implements ProjectRepository {
+public class ProjectRepositoryPropertyInject implements ProjectRepositoryWithoutCrudRepository {
 
     /*
     왜 프로퍼티가 아닌 생성자의 파라미터에 @Value를 적용하였는지?
@@ -52,9 +52,10 @@ public class ProjectRepositoryPropertyInject implements ProjectRepository {
     }
 
     @Override
-    public void save(Project project) {
+    public Project save(Project project) {
         updateInternalId(project);
         projects.put(project.getId(), project);
+        return project;
     }
 
     private void updateInternalId(Project project) {

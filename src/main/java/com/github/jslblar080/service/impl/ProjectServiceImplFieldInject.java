@@ -1,7 +1,7 @@
 package com.github.jslblar080.service.impl;
 
 import com.github.jslblar080.persistence.model.Project;
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import com.github.jslblar080.service.ProjectService;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -18,7 +18,7 @@ public class ProjectServiceImplFieldInject implements ProjectService {
     // field-based dependency injection
     @Inject
     @Named("projectRepositoryImpl")
-    private ProjectRepository projectRepo; // using @Autowired on fields is not the recommended practice
+    private ProjectRepositoryWithoutCrudRepository projectRepo; // using @Autowired on fields is not the recommended practice
 
     public ProjectServiceImplFieldInject() {
     }
@@ -29,7 +29,7 @@ public class ProjectServiceImplFieldInject implements ProjectService {
     }
 
     @Override
-    public void save(Project project) {
-        projectRepo.save(project);
+    public Project save(Project project) {
+        return projectRepo.save(project);
     }
 }

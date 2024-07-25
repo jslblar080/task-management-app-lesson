@@ -1,6 +1,6 @@
 package com.github.jslblar080.config;
 
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import com.github.jslblar080.persistence.repository.impl.ProjectRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,13 +11,13 @@ public class PersistenceConfig {
 
     @Bean
     //@Scope("singleton") or @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public ProjectRepository singletonBean() {
+    public ProjectRepositoryWithoutCrudRepository singletonBean() {
         return new ProjectRepositoryImpl();
     }
 
     @Bean
     @Scope("prototype") // or @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public ProjectRepository prototypeBean() {
+    public ProjectRepositoryWithoutCrudRepository prototypeBean() {
         return new ProjectRepositoryImpl();
     }
 }

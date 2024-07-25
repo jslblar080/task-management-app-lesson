@@ -1,5 +1,9 @@
 package com.github.jslblar080.persistence.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +12,11 @@ import java.util.Objects;
 import java.util.Random;
 
 @Getter
-public class Project {
+@Entity
+public class ProjectWithCrudRepository {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -19,14 +26,10 @@ public class Project {
     @Setter
     private String internalId;
 
-    protected Project() {
+    protected ProjectWithCrudRepository() {
     }
 
-    public Project(Long id, String name, LocalDate dateCreated) {
-        if (Objects.isNull(id)) {
-            id = new Random().nextLong();
-        }
-        this.id = id;
+    public ProjectWithCrudRepository(String name, LocalDate dateCreated) {
         this.name = name;
         this.dateCreated = dateCreated;
     }

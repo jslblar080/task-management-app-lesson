@@ -1,7 +1,7 @@
 package com.github.jslblar080.service.impl;
 
 import com.github.jslblar080.persistence.model.Project;
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import com.github.jslblar080.service.ProjectService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
@@ -14,14 +14,14 @@ import java.util.Optional;
 @Lazy // Lazy initialization helps limit resource consumption peaks at startup and save overall system resources.
 public class ProjectServiceImplSetterInject implements ProjectService {
 
-    private ProjectRepository projectRepo;
+    private ProjectRepositoryWithoutCrudRepository projectRepo;
 
     public ProjectServiceImplSetterInject() {
     }
 
     // setter-based dependency injection (annotation required for injecting dependencies)
     @Resource(name = "projectRepositoryImpl")
-    public void setProjectRepository(ProjectRepository projectRepo) {
+    public void setProjectRepository(ProjectRepositoryWithoutCrudRepository projectRepo) {
         this.projectRepo = projectRepo;
     }
 
@@ -31,7 +31,7 @@ public class ProjectServiceImplSetterInject implements ProjectService {
     }
 
     @Override
-    public void save(Project project) {
-
+    public Project save(Project project) {
+        return projectRepo.save(project);
     }
 }

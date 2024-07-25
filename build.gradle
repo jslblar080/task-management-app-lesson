@@ -24,13 +24,11 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-
-	// https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api
-	implementation group: 'jakarta.inject', name: 'jakarta.inject-api', version: '2.0.1'
-
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.3.0'
-
+	implementation 'jakarta.inject:jakarta.inject-api'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Use h2 for in-memory database
+	implementation "com.h2database:h2"
 }
 
 tasks.named('test') {

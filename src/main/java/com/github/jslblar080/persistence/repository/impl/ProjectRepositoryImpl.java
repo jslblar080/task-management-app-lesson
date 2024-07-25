@@ -1,7 +1,7 @@
 package com.github.jslblar080.persistence.repository.impl;
 
 import com.github.jslblar080.persistence.model.Project;
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Profile("dev")
 @Repository //@Component // meta-annotation that can be applied to another annotation
-public class ProjectRepositoryImpl implements ProjectRepository {
+public class ProjectRepositoryImpl implements ProjectRepositoryWithoutCrudRepository {
 
     private final Map<Long, Project> projects = new ConcurrentHashMap<>();
 
@@ -30,8 +30,9 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public void save(Project project) {
+    public Project save(Project project) {
         log.debug("Saving Project {} using ProjectRepositoryImpl", project);
         projects.put(project.getId(), project);
+        return project;
     }
 }

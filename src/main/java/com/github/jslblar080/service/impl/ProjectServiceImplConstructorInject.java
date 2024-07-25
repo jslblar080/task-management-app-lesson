@@ -1,7 +1,7 @@
 package com.github.jslblar080.service.impl;
 
 import com.github.jslblar080.persistence.model.Project;
-import com.github.jslblar080.persistence.repository.ProjectRepository;
+import com.github.jslblar080.persistence.repository.ProjectRepositoryWithoutCrudRepository;
 import com.github.jslblar080.service.ProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -21,14 +21,14 @@ import java.util.Optional;
 @Slf4j
 public class ProjectServiceImplConstructorInject implements ProjectService, ApplicationContextAware {
 
-    private ProjectRepository projectRepo; // using @Autowired on fields is not the recommended practice
+    private ProjectRepositoryWithoutCrudRepository projectRepo; // using @Autowired on fields is not the recommended practice
 
     public ProjectServiceImplConstructorInject() {
     }
 
     // constructor-based dependency injection
     @Autowired // multiple constructors need @Autowired (@Autowired is optional for a single constructor)
-    public ProjectServiceImplConstructorInject(ProjectRepository singletonBean) {
+    public ProjectServiceImplConstructorInject(ProjectRepositoryWithoutCrudRepository singletonBean) {
         projectRepo = singletonBean;
     }
 
@@ -38,8 +38,8 @@ public class ProjectServiceImplConstructorInject implements ProjectService, Appl
     }
 
     @Override
-    public void save(Project project) {
-        projectRepo.save(project);
+    public Project save(Project project) {
+        return projectRepo.save(project);
     }
 
     @Override // this method gives access to the current ApplicationContext
