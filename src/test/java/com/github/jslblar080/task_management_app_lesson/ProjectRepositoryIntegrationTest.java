@@ -1,6 +1,6 @@
 package com.github.jslblar080.task_management_app_lesson;
 
-import com.github.jslblar080.persistence.model.ProjectWithCrudRepository;
+import com.github.jslblar080.persistence.model.ProjectEntity;
 import com.github.jslblar080.persistence.repository.ProjectRepository;
 import com.github.jslblar080.task_management_app_lesson.config.TestConfig;
 import org.junit.jupiter.api.Test;
@@ -22,40 +22,40 @@ public class ProjectRepositoryIntegrationTest {
 
     @Test
     public void whenSavingProject_thenOk() {
-        ProjectWithCrudRepository project = new ProjectWithCrudRepository("First test", LocalDate.now());
+        ProjectEntity project = new ProjectEntity("First test", LocalDate.now());
         assertNotNull(projectRepository.save(project));
     }
 
     @Test
     public void whenFindingProjectById_thenOk() {
-        ProjectWithCrudRepository project = new ProjectWithCrudRepository("First test", LocalDate.now());
+        ProjectEntity project = new ProjectEntity("First test", LocalDate.now());
         projectRepository.save(project);
-        Optional<ProjectWithCrudRepository> retrievedProject = projectRepository.findById(project.getId());
+        Optional<ProjectEntity> retrievedProject = projectRepository.findById(project.getId());
         assert (retrievedProject.isPresent());
         assertEquals(retrievedProject.get().getName(), project.getName());
     }
 
     @Test
     public void whenFindingProjectByName_thenOk() {
-        ProjectWithCrudRepository project = new ProjectWithCrudRepository("First test", LocalDate.now());
+        ProjectEntity project = new ProjectEntity("First test", LocalDate.now());
         projectRepository.save(project);
-        Optional<ProjectWithCrudRepository> retrievedProject = projectRepository.findByName(project.getName());
+        Optional<ProjectEntity> retrievedProject = projectRepository.findByName(project.getName());
         assert (retrievedProject.isPresent());
         assertEquals(retrievedProject.get().getId(), project.getId());
     }
 
     @Test
     public void whenFindingProjectByDateCreatedBetween_thenOk() {
-        ProjectWithCrudRepository oldProject = new ProjectWithCrudRepository("First test", LocalDate.now().minusYears(1));
+        ProjectEntity oldProject = new ProjectEntity("First test", LocalDate.now().minusYears(1));
         projectRepository.save(oldProject);
 
-        ProjectWithCrudRepository newProject = new ProjectWithCrudRepository("Second test", LocalDate.now());
+        ProjectEntity newProject = new ProjectEntity("Second test", LocalDate.now());
         projectRepository.save(newProject);
 
-        ProjectWithCrudRepository newProject2 = new ProjectWithCrudRepository("Third test", LocalDate.now());
+        ProjectEntity newProject2 = new ProjectEntity("Third test", LocalDate.now());
         projectRepository.save(newProject2);
 
-        List<ProjectWithCrudRepository> retrievedProjects = projectRepository.findByDateCreatedBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
+        List<ProjectEntity> retrievedProjects = projectRepository.findByDateCreatedBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
         assert (retrievedProjects.size() == 2);
     }
 }

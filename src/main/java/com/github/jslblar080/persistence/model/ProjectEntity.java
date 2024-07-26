@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Getter
 @Entity
-public class ProjectWithCrudRepository {
+public class ProjectEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class ProjectWithCrudRepository {
     @Setter
     private String internalId;
 
-    protected ProjectWithCrudRepository() {
+    protected ProjectEntity() {
     }
 
-    public ProjectWithCrudRepository(String name, LocalDate dateCreated) {
+    public ProjectEntity(String name, LocalDate dateCreated) {
         this.name = name;
         this.dateCreated = dateCreated;
     }
