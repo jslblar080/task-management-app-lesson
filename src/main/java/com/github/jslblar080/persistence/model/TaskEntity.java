@@ -5,10 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 
 @Getter
+@RequiredArgsConstructor
 @Entity
 public class TaskEntity {
 
@@ -16,23 +19,20 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String description;
 
+    @NonNull
     private LocalDate dateCreated;
 
+    @NonNull
     private LocalDate dueDate;
 
     private TaskStatus status;
 
     protected TaskEntity() {
-    }
-
-    public TaskEntity(String name, String description, LocalDate dateCreated, LocalDate dueDate) {
-        this.name = name;
-        this.description = description;
-        this.dateCreated = dateCreated;
-        this.dueDate = dueDate;
     }
 }
