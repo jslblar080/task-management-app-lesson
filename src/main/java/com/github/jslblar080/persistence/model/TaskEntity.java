@@ -1,22 +1,21 @@
 package com.github.jslblar080.persistence.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Getter
 @RequiredArgsConstructor
+@ToString
 @Entity
 public class TaskEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) // for h2 in-memory database
     private Long id;
 
     @NonNull
@@ -31,6 +30,7 @@ public class TaskEntity {
     @NonNull
     private LocalDate dueDate;
 
+    @Enumerated(EnumType.STRING) // avoid EnumType.ORDINAL
     private TaskStatus status;
 
     protected TaskEntity() {

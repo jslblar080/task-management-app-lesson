@@ -29,6 +29,11 @@ public class TaskRepositoryIntegrationTest {
         taskRepository.save(task4);
 
         List<TaskEntity> retrievedTasks = taskRepository.findByNameMatches("High");
+        retrievedTasks.forEach(System.out::println);
+        /*
+        TaskEntity(id=3, name=High Priority Task, description=High Priority Task, dateCreated=XXXX-XX-XX, dueDate=XXXX-XX-XX, status=null)
+        TaskEntity(id=4, name=High Priority Task, description=High Priority Task, dateCreated=XXXX-XX-XX, dueDate=XXXX-XX-XX, status=null)
+        */
         assert (retrievedTasks.size() == 2);
     }
 }
