@@ -1,14 +1,12 @@
 package com.github.jslblar080.persistence.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
 @ToString
 @Entity
@@ -32,7 +30,4 @@ public class TaskEntity {
 
     @Enumerated(EnumType.STRING) // avoid EnumType.ORDINAL
     private TaskStatus status;
-
-    protected TaskEntity() {
-    }
 }
