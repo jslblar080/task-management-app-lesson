@@ -7,3 +7,14 @@ CREATE TABLE project_entity
     name         VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE task_entity
+(
+    date_created DATE         NOT NULL,
+    due_date     DATE         NOT NULL,
+    id           INTEGER      NOT NULL AUTO_INCREMENT,
+    description  VARCHAR(255) NOT NULL,
+    name         VARCHAR(255) NOT NULL,
+    status       ENUM ('DONE','IN_PROGRESS','ON_HOLD','TO_DO'),
+    PRIMARY KEY (id)
+);
