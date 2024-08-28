@@ -5,15 +5,16 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
+@Data
+@Entity
+@EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
 @ToString
-@Entity
 public class TaskEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE) // for h2 in-memory database
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
