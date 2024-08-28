@@ -11,9 +11,9 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Entity
 @Getter
 @RequiredArgsConstructor
-@Entity
 public class ProjectEntity {
 
     @Id
