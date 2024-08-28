@@ -22,8 +22,10 @@ public class ProjectRepositoryIntegrationTest {
 
     @Test
     public void whenSavingProject_thenOk() {
+        projectRepository.findAll().forEach(System.out::println); // from data.sql
         ProjectEntity project = new ProjectEntity("First test", LocalDate.now());
         assertNotNull(projectRepository.save(project));
+        projectRepository.findAll().forEach(System.out::println); // from data.sql + project
     }
 
     @Test

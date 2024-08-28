@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
+@ToString
 public class ProjectEntity {
 
     @Id
