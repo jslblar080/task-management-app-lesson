@@ -1,12 +1,11 @@
 package com.github.jslblar080.persistence.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,4 +26,8 @@ public class ProjectEntity {
 
     @Setter
     private String internalId;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_entity_id")
+    private final Set<TaskEntity> tasks = new HashSet<>();
 }

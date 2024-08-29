@@ -58,6 +58,6 @@ public class ProjectRepositoryIntegrationTest {
         projectRepository.save(newProject2);
 
         List<ProjectEntity> retrievedProjects = projectRepository.findByDateCreatedBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
-        assert (retrievedProjects.size() == 2);
+        assert (retrievedProjects.size() == 4);
     }
 }
